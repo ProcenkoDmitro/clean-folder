@@ -8,5 +8,5 @@ setup(
     author='Procenko_Dmitro',
     author_email='procenkod@ukr.net',
     packages = ['hw6_goit'],
-    entry_points={'console_scripts': ['clean-folder = clean-folder.clean']}
+    entry_points={'console_scripts': ['clean-folder = clean-folder.clean:sorting']}
     )

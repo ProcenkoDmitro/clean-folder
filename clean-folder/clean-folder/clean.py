@@ -1,5 +1,6 @@
 from dataclasses import replace
 from pathlib import Path
+import sys
 import os
 #BASE_DIR = "/Users/proce/Desktop/Хламіщє_тест/"
 translit = {
@@ -48,8 +49,6 @@ def normalize(name_file):
         else:
             norm_name = norm_name + i
     return norm_name   
-
-p = Path('/Users/proce/Desktop/Хламіщє_тест/')
 
 def sorting(dir):
     images_path = dir + "images"
@@ -106,5 +105,10 @@ def sorting(dir):
                 #sorting(dir + file)   
     
 
-BASE_DIR = str(input())
-sorting(BASE_DIR)
+#BASE_DIR = str(input())
+#sorting(BASE_DIR)
+
+if __name__ == "__main__":
+    dir = sys.argv[1]
+    sorting(dir)
+    
