@@ -50,6 +50,7 @@ def normalize(name_file):
     return norm_name   
 
 def sorting(dir):
+    dir = sys.argv[1]
     images_path = dir + "images"
     videos_path = dir + "videos"
     docs_path = dir + "docs"
@@ -95,10 +96,6 @@ def sorting(dir):
             os.replace(file_path, new_file)
         elif os.path.isfile(dir + file):
             new_file = os.path.join(not_recognize_path, file)
-            os.replace(file_path, new_file)
-           
+            os.replace(file_path, new_file)    
 
-if __name__ == "__main__":
-    dir = sys.argv[1]
-    sorting(dir)
-    
+   
