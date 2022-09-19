@@ -49,7 +49,7 @@ def normalize(name_file):
             norm_name = norm_name + i
     return norm_name   
 
-def sorting(dir):
+def sorting():
     dir = sys.argv[1]
     images_path = dir + "images"
     videos_path = dir + "videos"
