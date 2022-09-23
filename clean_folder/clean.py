@@ -2,41 +2,10 @@ from dataclasses import replace
 from pathlib import Path
 import sys
 import os
-translit = {
-    'а': 'a', 'А': 'A',
-    'б': 'b', 'Б': 'B',
-    'в': 'v', 'В': 'V',
-    'г': 'g', 'Г': 'G',
-    'ґ': 'g', 'Ґ': 'G',
-    'д': 'd', 'Д': 'D',
-    'е': 'e', 'Е': 'E',
-    'є': 'ye', 'Є': 'Ye',
-    'ж': 'j', 'Ж': 'J' ,
-    'з': 'z', 'З': 'Z',
-    'и': 'i', 'И': 'I',
-    'і': 'i', 'І': 'I',
-    'ї': 'yi', 'Ї': 'Yi',
-    'й': 'y', 'Й': 'Y',
-    'к': 'k', 'К': 'K',
-    'л': 'l', 'Л': 'L',
-    'м': 'm', 'М': 'M',
-    'н': 'n', 'Н': 'N',
-    'о': 'o', 'О': 'O',
-    'п': 'p', 'П': 'P',
-    'р': 'r', 'Р': 'R',
-    'с': 's', 'С': 'S',
-    'т': 't', 'Т': 'T',
-    'у': 'u', 'У': 'U',
-    'ф': 'f', 'Ф': 'F',
-    'х': 'h', 'Х': 'H',
-    'ц': 'c', 'Ц': 'C',
-    'ч': 'ch', 'Ч': 'Ch',
-    'ш': 'sh', 'Ш': 'Sc',
-    'щ': 'sch', 'Щ': 'Sch',
-    'ь': '',
-    'ю': 'yu', 'Ю': 'Yu',
-    'я': 'ya', 'Я': 'Ya'
-}
+
+
+from .const import translit
+
 
 def normalize(name_file):
     norm_name = ""
@@ -44,10 +13,11 @@ def normalize(name_file):
         name_file = name_file.replace(key, translit[key])
     for i in name_file:
         if not i.isnumeric() and not i.isalpha():
-            norm_name = norm_name + "_"            
+            norm_name = norm_name + "_"
         else:
             norm_name = norm_name + i
-    return norm_name   
+    return norm_name
+
 
 def sorting():
     dir = sys.argv[1]
@@ -70,8 +40,8 @@ def sorting():
         os.makedirs(zips_path)
     if not os.path.exists(not_recognize_path):
         os.makedirs(not_recognize_path)
-    
-    for i in os.listdir(dir):    
+
+    for i in os.listdir(dir):
         norm_name = normalize(os.path.splitext(i)[0])
         old_name = os.path.join(dir, i)
         new_name = os.path.join(dir, norm_name + os.path.splitext(i)[1])
@@ -96,6 +66,5 @@ def sorting():
             os.replace(file_path, new_file)
         elif os.path.isfile(dir + file):
             new_file = os.path.join(not_recognize_path, file)
-            os.replace(file_path, new_file)    
+            os.replace(file_path, new_file)
 
-   

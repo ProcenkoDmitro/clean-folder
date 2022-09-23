@@ -4,9 +4,9 @@ setup(
     name='cleaner',
     version='1',
     description='normalize_your_dirs',
-    url='http://github.com/dummy_user/useful',
+    url='https://github.com/ProcenkoDmitro/clean_folder',
     author='Procenko_Dmitro',
     author_email='procenkod@ukr.net',
-    packages = ['clean'],
+    packages = ['clean_folder'],
     entry_points={'console_scripts': ['clean-folder = clean_folder.clean:sorting']}
     )
