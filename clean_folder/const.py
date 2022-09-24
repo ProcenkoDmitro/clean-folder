@@ -1,3 +1,7 @@
+from enum import Enum
+from collections import namedtuple
+
+
 translit = {
     'а': 'a', 'А': 'A',
     'б': 'b', 'Б': 'B',
@@ -33,3 +37,33 @@ translit = {
     'ю': 'yu', 'Ю': 'Yu',
     'я': 'ya', 'Я': 'Ya'
 }
+
+
+FilesStructure = namedtuple('FilesStructure', ('directory', 'extensions'))
+
+
+class FilesDirAndExt(Enum):
+    DOCS = FilesStructure(
+        "docs",
+        {'.doc', '.docx', '.txt', '.pdf', '.xlxs', '.pptx',}
+    )
+    ZIPS = FilesStructure(
+        "zips",
+        {'.zip', '.gz', '.tar',}
+    )
+    IMAGES = FilesStructure(
+        "images",
+        {'.jpg', '.png', '.png', '.svg', '.jfif', '.gif',}
+    )
+    VIDEOS = FilesStructure(
+        "videos",
+        {'.avi', '.mp4', '.mov', '.mkv',}
+    )
+    MUSICS = FilesStructure(
+        "musics",
+        {'.mp3', '.ogg', '.wav', '.amr',}
+    )
+    NOT_RECOGNIZE = FilesStructure(
+        "not_recognize",
+        set()
+    )
