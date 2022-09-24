@@ -19,22 +19,30 @@ def normalize(file_name):
             if char.islower() else translit_char.title()
 
 
+def get_workdir():
+    if len(sys.argv) == 1:
+        # TODO: load script name (`clean-folder`) from config file
+        print('Usage: clean-folder [Folder-to-clean]')
+        exit()
+    return sys.argv[1]
+
+
 def sorting():
-    main_directory = sys.argv[1]
+    workdir = get_workdir()
 
     for file_structure in FilesDirAndExt:
         file_path = os.path.join(
-            main_directory, file_structure.value.directory
+            workdir, file_structure.value.directory
         )
 
         if not os.path.exists(file_path):
             os.makedirs(file_path)
 
-    for file in os.listdir(main_directory):
+    for file in os.listdir(workdir):
         file_name, file_ext = os.path.splitext(file)
-        file_path = os.path.join(main_directory, file)
+        file_path = os.path.join(workdir, file)
         norm_file_name = ''.join(normalize(file_name))
-        norm_file_path = os.path.join(main_directory, norm_file_name)
+        norm_file_path = os.path.join(workdir, norm_file_name)
 
         for file_structure in FilesDirAndExt:
             if any((
@@ -45,7 +53,7 @@ def sorting():
                     )
             )):
                 new_file = os.path.join(
-                    main_directory, file_structure.value.directory,
+                    workdir, file_structure.value.directory,
                     norm_file_name
                 )
                 os.replace(file_path, new_file)
