@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='cleaner',
-    version='1',
+    version='1.1a',
     description='normalize_your_dirs',
     url='https://github.com/ProcenkoDmitro/clean_folder',
     author='Procenko_Dmitro',
