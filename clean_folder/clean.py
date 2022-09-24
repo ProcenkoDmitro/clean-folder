@@ -27,8 +27,9 @@ def get_workdir():
     return sys.argv[1]
 
 
-def sorting():
-    workdir = get_workdir()
+def sorting(workdir = None):
+    if workdir is None:
+        workdir = get_workdir()
 
     for file_structure in FilesDirAndExt:
         file_path = os.path.join(
@@ -41,8 +42,7 @@ def sorting():
     for file in os.listdir(workdir):
         file_name, file_ext = os.path.splitext(file)
         file_path = os.path.join(workdir, file)
-        norm_file_name = ''.join(normalize(file_name))
-        norm_file_path = os.path.join(workdir, norm_file_name)
+        norm_file_name = f"{''.join(normalize(file_name))}{file_ext}"
 
         for file_structure in FilesDirAndExt:
             if any((
@@ -59,4 +59,4 @@ def sorting():
                 os.replace(file_path, new_file)
                 break
         else:
-            os.rename(file_path, norm_file_path)
+            os.rename(file_path, os.path.join(workdir, norm_file_name))
